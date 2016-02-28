@@ -1,0 +1,54 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Тестовый бложег</title>
+<style>
+body{
+    font-family: Tahoma, serif;
+    font-size: 14px;
+}
+  
+p.comment{
+	color: grey;
+    font-family: Tahoma, serif;
+    font-size: 12px;
+	padding-left: 50px;
+}
+          
+
+</style>
+</head>
+<body>
+Тут будет блог<br>
+<a href="admin/main/blogitem/add/">добавить запись</a>
+
+{% for item in item_list %}
+<h4>
+  {{item.date}}<br><a href="/admin/main/blogitem/{{item.id}}/">{{ item.title|upper }}</a> 
+</h4>
+<p>{{ item.text }}</p>
+<br/>Комментарии:
+<br/><a href='{% url 'add_comment_url' item.id   %}'>Добавить комментарий.</a>
+{% for key, val in comment_list.items %}
+	{% if key == item.id%}
+		{% for i in val %}
+		<p class="comment"><a href="/admin/main/blogitemcomment/{{i.id}}/">{{i.date}}</a><br/>
+				 {% if i.avatar %}	 
+				 <img src="media/{{settings.MEDIA_ROOT}}/{{i.avatar}}" height="100px">
+				 {% endif %}
+
+				 {{i.text}}
+	
+		</p>
+		{% endfor %}
+	{% endif %}
+{% endfor %}
+
+<hr/>
+
+{% endfor %}
+
+{{test}}
+</body>
+<html>

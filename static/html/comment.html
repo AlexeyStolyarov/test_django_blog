@@ -1,0 +1,44 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Тестовый бложег</title>
+<style>
+body{
+    font-family: Tahoma, serif;
+    font-size: 14px;
+}
+  
+p.comment{
+	color: grey;
+    	font-family: Tahoma, serif;
+   	font-size: 12px;
+	padding-left: 50px;
+}
+          
+
+</style>
+</head>
+<body>
+<center>
+<h3>Добавить комментарий к: <br>{{blog_item}}</h3>
+<form enctype="multipart/form-data" method="post" action="">
+
+{% csrf_token %}
+<label for="comment_form.id_comment">{{comment_form.comment.label}}</label>
+{{comment_form.text}}
+<br><br><br>
+
+<label for="comment_form.id_avatar">{{comment_form.avatar.label}}</label>
+{{comment_form.avatar}}
+
+{{comment_form.parent_id}}
+{{comment_form.comment_id}}
+<hr>
+<input type="submit" value="OK">
+</form>
+
+
+</center>
+</body>
+<html>
